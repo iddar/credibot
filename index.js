@@ -2,10 +2,11 @@ require('dotenv').config()
 
 const Koa = require('koa')
 const Router = require('koa-router')
-const MongoClient = require('mongodb').MongoClient
 
 const app = new Koa()
 const router = new Router()
+
+const PORT = process.env.PORT || 5000
 
 router.get('/webhook', async (ctx, next) => {
   let body = req.body;
@@ -34,4 +35,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(PORT)

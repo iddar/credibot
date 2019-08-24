@@ -8,26 +8,21 @@ const router = new Router()
 
 const PORT = process.env.PORT || 5000
 
-router.get('/webhook', async (ctx, next) => {
-  let body = req.body;
-
-  // Checks this is an event from a page subscription
-  if (body.object === 'page') {
-
-    // Iterates over each entry - there may be multiple if batched
-    body.entry.forEach(function(entry) {
-
-      // Gets the message. entry.messaging is an array, but 
-      // will only ever contain one message, so we get index 0
-      let webhook_event = entry.messaging[0];
-      console.log(webhook_event);
-    });
-
-    // Returns a '200 OK' response to all requests
-    res.status(200).send('EVENT_RECEIVED');
+router.get('/webhook', (ctx, next) => {
+  if (ctx.query['hub.verify_token'] === verification) {
+    ctx.body = ctx.query['hub.challenge']
   } else {
-    // Returns a '404 Not Found' if event is not from a page subscription
-    res.sendStatus(404);
+    ctx.body = 'Error, wrong validation token'
+  }
+})
+
+router.post('/webhook', async (ctx, next) => {
+  ctx.body = 'ok'
+  await next() // end request
+  // console.warn(JSON.stringify(ctx.request.body, null, 2))
+  let messages = messenger.parse(ctx.request.body, onAction)
+  if (messages.length > 0) {
+    precessesMessages(messages)
   }
 })
 

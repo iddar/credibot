@@ -9,13 +9,7 @@ const verification = 'super-cat-serial'
 function getValueFromTag(obj, filter) {
   let flat = flatten(obj)
 
-  console.log(
-    JSON.stringify(flat, null, 2)
-  )
-
   let keys = Object.keys(flat)
-
-  console.log(keys.filter(key => key.includes(filter)))
 
   let [key] = keys.filter(key => key.includes(filter))
 
@@ -62,9 +56,9 @@ module.exports = function(router) {
   router.post('/webhook', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
-    let type = getValueFromTag(ctx.request.body, 'type')
-    let user = getValueFromTag(ctx.request.body, 'sender.id')
-    onType(user, type, ctx.request.body)
+    // let type = getValueFromTag(ctx.request.body, 'type')
+    // let user = getValueFromTag(ctx.request.body, 'sender.id')
+    // onType(user, type, ctx.request.body)
   })
   
   router.post('/resume', async (ctx, next) => {
@@ -78,10 +72,18 @@ module.exports = function(router) {
     console.warn(JSON.stringify(
       flatten(ctx.request.body)
       , null, 2))
-    let img = ctx.request.body["INE Front"]
-    
+    let ine = ctx.request.body["INE Front"]
+    let video = ctx.request.body["Video"]
+    let recipt = ctx.request.body["Comprobante de domicilio"]
+    let location = ctx.request.body["Ubicación actual"]
+
+    let latlog = location.split('place/').pop()
+
     ctx.body = {
-      "set_attributes": { "address_doc": await parseINE(img) }
+      ine, video, recipt, location, latlog
     }
+    // ctx.body = {
+    //   "set_attributes": { "address_doc": await parseINE(img) }
+    // }
   })
 }

@@ -45,7 +45,7 @@ module.exports = async function getFrame(url) {
   
   await extractFrames({
     input: videoPath,
-    output: framePath,
+    output: `${path}/${framePath}`,
     offsets: [1000]
   })
 

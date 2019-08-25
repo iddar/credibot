@@ -17,29 +17,28 @@ function getValueFromTag(obj, filter) {
   return flat[key]
 }
 
-async function onType(user, type, body) {
-  console.log({type})
-  switch (type) {
-    case 'location':
-      let lat = getValueFromTag(body, 'coordinates.lat')
-      let long = getValueFromTag(body, 'coordinates.long')
-      console.log(save.location(user, {location: {lat, long}}))
-      break;
-    case 'video':
-        let video = getValueFromTag(body, 'payload.url')
-        console.log(save.video(user, {video}))
-        let frame = await getFrame(video)
-        console.log(frame)
-      break;
-    case 'image':
-        let ine = getValueFromTag(body, 'payload.url')
-        console.log(save.video(user, {ine}))
-      break;
+// async function onType(user, type, body) {
+//   switch (type) {
+//     case 'location':
+//       let lat = getValueFromTag(body, 'coordinates.lat')
+//       let long = getValueFromTag(body, 'coordinates.long')
+//       console.log(save.location(user, {location: {lat, long}}))
+//       break;
+//     case 'video':
+//         let video = getValueFromTag(body, 'payload.url')
+//         console.log(save.video(user, {video}))
+//         let frame = await getFrame(video)
+//         console.log(frame)
+//       break;
+//     case 'image':
+//         let ine = getValueFromTag(body, 'payload.url')
+//         console.log(save.video(user, {ine}))
+//       break;
   
-    default:
-      break;
-  }
-}
+//     default:
+//       break;
+//   }
+// }
 
 module.exports = function(router) {
   router.get('/', (ctx, next) => {
@@ -70,9 +69,9 @@ module.exports = function(router) {
   })
   
   router.post('/sample', async (ctx, next) => {
-    console.warn(JSON.stringify(
-      flatten(ctx.request.body)
-      , null, 2))
+    // console.warn(JSON.stringify(
+    //   flatten(ctx.request.body)
+    //   , null, 2))
     let ine = ctx.request.body["INE Front"]
     let video = ctx.request.body["Video"]
     let recipt = ctx.request.body["Comprobante de domicilio"]

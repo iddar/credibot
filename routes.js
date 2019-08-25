@@ -23,12 +23,12 @@ async function onType(user, type, body) {
       console.log(user, 'send: ', type, {lat, long})
       break;
     case 'video':
-        let url = getValueFromTag(body, 'payload.url')
-        console.log(user, 'send: ', type, {url})
+        let urlVideo = getValueFromTag(body, 'payload.url')
+        console.log(user, 'send: ', type, {urlVideo})
       break;
     case 'image':
-        let url = getValueFromTag(body, 'payload.url')
-        console.log(user, 'send: ', type, {url})
+        let urlImage = getValueFromTag(body, 'payload.url')
+        console.log(user, 'send: ', type, {urlImage})
       break;
   
     default:

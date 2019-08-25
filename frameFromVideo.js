@@ -55,7 +55,7 @@ module.exports = async function getFrame(url) {
   // })
   // await saveToCloud(audioPath)
 
-  let url = await saveToCloud(framePath)
+  let urlFile = await saveToCloud(framePath)
 
-  return url
+  return urlFile
 }

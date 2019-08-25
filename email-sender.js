@@ -73,7 +73,6 @@ function getEmailTemplate(ine, frame, mapPic) {
           </td>
         </tr>
         <!-- / Resumen -->
-
       </tbody>
 
       <tfoot>
@@ -91,7 +90,7 @@ function getEmailTemplate(ine, frame, mapPic) {
 module.exports = function send (conf) {
   let msg = {
     ...conf,
-    html: getEmailTemplate(conf.ine, conf.frame, conf.mapPic);
+    html: getEmailTemplate(conf.ine, conf.frame, conf.mapPic)
   }
 
   transport.sendMail(msg, function(err, info) {

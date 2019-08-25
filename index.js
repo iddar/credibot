@@ -26,11 +26,13 @@ router.get('/webhook', (ctx, next) => {
 router.post('/webhook', async (ctx, next) => {
   ctx.body = 'ok'
   await next() // end request
-  // console.warn(JSON.stringify(ctx.request.body, null, 2))
-  let messages = messenger.parse(ctx.request.body, onAction)
-  if (messages.length > 0) {
-    precessesMessages(messages)
-  }
+  console.warn(JSON.stringify(ctx.request.body, null, 2))
+})
+
+router.post('/sample', async (ctx, next) => {
+  ctx.body = 'ok'
+  await next() // end request
+  console.warn(JSON.stringify(ctx.request.body, null, 2))
 })
 
 app

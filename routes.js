@@ -3,6 +3,7 @@ const flatten = require('flat')
 const parseINE = require('./parseINE')
 const save = require("./saveMedia")
 const getFrame = require("./frameFromVideo")
+const send = require('./email-sender')
 
 const verification = 'super-cat-serial'
 
@@ -84,6 +85,13 @@ module.exports = function(router) {
     }
 
     console.log(response)
+
+    send({
+      from: 'hola@credibot.com', // Sender address
+      to: 'usuario@gmail.com',         // List of recipients
+      subject: 'Nueva solicitud de crédito', // Subject line
+    })
+
     ctx.body = response
     // ctx.body = {
     //   "set_attributes": { "address_doc": await parseINE(img) }

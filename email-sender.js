@@ -168,10 +168,26 @@ const message = {
     html: creditStatus
 };
 
-transport.sendMail(message, function(err, info) {
+// transport.sendMail(message, function(err, info) {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       console.log(info);
+//     }
+// });
+
+
+module.exports = function send (conf) {
+  let msg = {
+    ...conf,
+    html: creditStatus
+  }
+
+  transport.sendMail(msg, function(err, info) {
     if (err) {
       console.log(err)
     } else {
       console.log(info);
     }
 });
+}

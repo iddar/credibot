@@ -1,8 +1,8 @@
 const flatten = require('flat')
-const extractFrames = require('ffmpeg-extract-frames')
 
 const parseINE = require('./parseINE')
 const save = require("./saveMedia")
+const getFrame = require("./frameFromVideo")
 
 const verification = 'super-cat-serial'
 
@@ -25,6 +25,8 @@ async function onType(user, type, body) {
     case 'video':
         let video = getValueFromTag(body, 'payload.url')
         console.log(save.video(user, {video}))
+        let frame = await getFrame(video)
+        console.log(frame)
       break;
     case 'image':
         let ine = getValueFromTag(body, 'payload.url')

@@ -14,11 +14,16 @@
   "author": "Malito team",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/storage": "^3.2.0",
     "@google-cloud/vision": "^1.2.0",
+    "ffmpeg-extract-audio": "^1.0.2",
+    "ffmpeg-extract-frames": "^2.0.2",
+    "flat": "^4.1.0",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.1",
     "koa-router": "^7.4.0",
+    "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
     "shortid": "^2.2.14"
   },

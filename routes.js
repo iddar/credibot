@@ -91,15 +91,26 @@ module.exports = function(router) {
     next()
     
     let frame = await getFrame(video)
+    let mapPic = getMap(latlog)
+    
     console.log({
       ...response,
-      frame
+      frame, mapPic
     })
 
     send({
       from: 'hola@credibot.com', // Sender address
       to: 'usuario@gmail.com',         // List of recipients
-      subject: 'Nueva solicitud de crédito', // Subject line
+      subject: 'Nueva solicitud de crédito', // Subject line,
+
+      frame, ine, mapPic
     })
   })
+}
+
+
+function getMap(latlon){
+  let g_key = process.env['GOOGLE_MAPS_KEY']
+  let uri = `https://maps.googleapis.com/maps/api/staticmap?center=${latlon}&zoom=12&size=400x400&key=${g_key}`
+  return uri
 }

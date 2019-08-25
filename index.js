@@ -1,6 +1,7 @@
 
 const Koa = require('koa')
 const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
 
 const precessesMessages = require('./precessesMessages')
 
@@ -38,5 +39,6 @@ router.post('/sample', async (ctx, next) => {
 app
   .use(router.routes())
   .use(router.allowedMethods())
+  .use(bodyParser())
 
 app.listen(PORT)

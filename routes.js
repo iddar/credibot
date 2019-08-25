@@ -63,7 +63,7 @@ module.exports = function(router) {
     ctx.body = 'ok'
     await next() // end request
     let user = getValueFromTag(ctx.request.body, 'messenger user id')
-    console.warn(save.getUserDate(user))
+    console.warn(save.getUserData(user))
   })
   
   router.post('/sample', async (ctx, next) => {

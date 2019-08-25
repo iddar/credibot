@@ -26,7 +26,7 @@ function saveToCloud (filePath) {
 module.exports = async function getFrame(url) {
   let videoPath = await downloadFile(url, path, 'mp4')
   let framePath = `${path}/${shortid.generate()}.jpg`
-  let audioPath = `${path}/${shortid.generate()}.mp3`
+  let audioPath = `${path}/${shortid.generate()}.ogg`
   
   await extractFrames({
     input: videoPath,
@@ -39,11 +39,8 @@ module.exports = async function getFrame(url) {
     output: audioPath
   })
 
-
-  await Promise.all([
-    saveToCloud(framePath),
-    saveToCloud(audioPath)
-  ])
+  await saveToCloud(framePath),
+  await saveToCloud(audioPath)
 
   return framePath
 }

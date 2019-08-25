@@ -6,6 +6,15 @@ const precessesMessages = require('./precessesMessages')
 
 const verification = 'super-cat-serial'
 
+function getValueFromTag(obj, filter) {
+  let flat = flatten(obj)
+  let keys = Object.keys(flat)
+
+  let [key] = keys.filter(key => key.includes(filter))
+
+  return flat[key]
+}
+
 module.exports = function(router) {
   router.get('/', (ctx, next) => {
     ctx.body = "run"
@@ -22,9 +31,8 @@ module.exports = function(router) {
   router.post('/webhook', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
-    console.warn(JSON.stringify(
-      flatten(ctx.request.body)
-      , null, 2))
+    let value = getValueFromTag(ctx.request.body, 'type')
+    console.warn(value)
   })
   
   router.post('/resume', async (ctx, next) => {

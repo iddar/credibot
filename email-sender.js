@@ -29,12 +29,11 @@ function getEmailTemplate(ine, frame, mapPic) {
         <!-- Datos personales -->
         <tr>
           <td colspan="3" style="padding: 30px 0; border-bottom: 1px dashed #333;">
-            <strong>Cliente:</strong> Bernardo León Perez Hernandez <br>
-            <strong>Dirección:</strong> Eje 8 sur av, popocatepetl núm. 0265 yac dpto 12 f1403 <br>
-            santa cryz atoyac <br>
-            c.p: 03310 <br>
-            benito juárez, cd. de mex. <br>
-            méxico.
+            <strong>Cliente:</strong> BERNARDO CASTAQEDA LEON <br>
+            <strong>Dirección:</strong> EJE 8 SUR AV POPOCATEPETL NÚM 0415 YAC DPTO 14 F1403 <BR>
+            SANTA CRYZ ATOYAC C.P: 03310 <br>
+            BENITO JUÁREZ, CD. DE MEX. <br>
+            MÉXICO.
           </td>
         </tr>
         <!-- / Datos personales -->
@@ -44,9 +43,9 @@ function getEmailTemplate(ine, frame, mapPic) {
           <td colspan="3" style="font-weight: bold; font-size: 16px; padding: 30px 0 20px 0;">ÍNDICE DE CONFIABILIDAD PARA IDENTIDAD I RECONOCIMIENTO FACIAL </td>
         </tr>
         <tr>
-          <td style="padding-bottom: 30px"><img src="${ine}" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="${ine}" style="width: 200px height: auto;" alt=""> </td>
           <td style="padding-bottom: 30px"><img src="https://quickchart.io/chart?c={type:%27radialGauge%27,data:{datasets:[{data:[83],backgroundColor:%27limegreen%27}]}}" width="250" height="150" alt=""></td>
-          <td style="padding-bottom: 30px"><img src="${frame}" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="${frame}"  style="width: 200px height: auto;" alt=""> </td>
         </tr>
         <!-- / Facial -->
 
@@ -55,7 +54,7 @@ function getEmailTemplate(ine, frame, mapPic) {
           <td colspan="3" style="font-weight: bold; font-size: 16px; padding: 30px 0; border-top: 1px dashed #333;">ÍNDICE DE EXACTITUD DE LA UBICACIÓN DEL DOMICILIO </td>
         </tr>
         <tr>
-          <td style="padding-bottom: 30px"><img src="http://violeta.space/credibot/address-01.png" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="http://violeta.space/credibot/address-01.png"  style="width: 200px height: auto;" alt=""> </td>
           <td style="padding-bottom: 30px"><img src="https://quickchart.io/chart?c={type:%27radialGauge%27,data:{datasets:[{data:[5],backgroundColor:%27red%27}]}}" width="250" height="150" alt=""> </td>
           <td style="padding-bottom: 30px"><img src="${mapPic}" alt=""> </td>
         </tr>

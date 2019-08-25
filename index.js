@@ -32,11 +32,8 @@ router.post('/webhook', async (ctx, next) => {
 
 router.post('/sample', async (ctx, next) => {
   ctx.body = {
-    "messages": [
-      {"text": "Welcome to the Chatfuel Rockets!"},
-      {"text": "What are you up to?"}
-    ]
-   }
+    "set_attributes": { "address_doc": "nueva dirección ine" }
+  }
   await next() // end request
   console.warn(JSON.stringify(ctx.request.body, null, 2))
 })

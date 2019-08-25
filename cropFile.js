@@ -6,6 +6,7 @@ const downloadFile = require('./downloadFile')
 const path = './.tmp'
 const bucketName = 'credibot'
 
+
 const storage = new Storage({
   credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
 })

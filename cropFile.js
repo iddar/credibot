@@ -51,7 +51,7 @@ function crop (file) {
 async function makeCrop (url) {
   let videoPath = await downloadFile(url, path, 'jpg')
   let imgCrop = await crop(videoPath)
-  let urlFile = await saveToCloud(`${path}/${imgCrop}`) 
+  let urlFile = await saveToCloud(`${imgCrop}`) 
   
   return urlFile
 }

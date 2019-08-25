@@ -2,7 +2,6 @@ const flatten = require('flat')
 const extractFrames = require('ffmpeg-extract-frames')
 
 const parseINE = require('./parseINE')
-const precessesMessages = require('./precessesMessages')
 const save = require("./saveMedia")
 
 const verification = 'super-cat-serial'
@@ -21,16 +20,18 @@ async function onType(user, type, body) {
     case 'location':
       let lat = getValueFromTag(body, 'coordinates.lat')
       let long = getValueFromTag(body, 'coordinates.long')
-      console.log(user, 'send: ', type, {lat, long})
+      save.location(user, {location: {lat, long}})
+      console.log({userData})
       break;
     case 'video':
-        let urlVideo = getValueFromTag(body, 'payload.url')
-        let userData = save.video(user, {urlVideo})
+        let video = getValueFromTag(body, 'payload.url')
+        let userData = save.video(user, {video})
         console.log({userData})
       break;
     case 'image':
-        let urlImage = getValueFromTag(body, 'payload.url')
-        console.log(user, 'send: ', type, {urlImage})
+        let ine = getValueFromTag(body, 'payload.url')
+        let userData = save.video(user, {ine})
+        console.log({userData})
       break;
   
     default:
@@ -62,9 +63,8 @@ module.exports = function(router) {
   router.post('/resume', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
-    console.warn(JSON.stringify(
-      flatten(ctx.request.body)
-      , null, 2))
+    let user = getValueFromTag(ctx.request.body, 'messenger user id')
+    console.warn(save.getUserDate(user))
   })
   
   router.post('/sample', async (ctx, next) => {

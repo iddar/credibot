@@ -3,6 +3,8 @@ require('dotenv').config()
 const Koa = require('koa')
 const Router = require('koa-router')
 
+const precessesMessages = require('./precessesMessages')
+
 const app = new Koa()
 const router = new Router()
 

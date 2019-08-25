@@ -17,7 +17,9 @@ function getValueFromTag(obj, filter) {
 
 async function onType(user, type, body) {
   console.log({type})
-  console.log(body)
+  console.log(
+    JSON.stringify(body, null, 2)
+  )
   switch (type) {
     case 'location':
       let lat = getValueFromTag(body, 'coordinates.lat')

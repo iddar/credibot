@@ -3,6 +3,7 @@ const extractFrames = require('ffmpeg-extract-frames')
 
 const parseINE = require('./parseINE')
 const precessesMessages = require('./precessesMessages')
+const save = require("./saveMedia")
 
 const verification = 'super-cat-serial'
 
@@ -24,7 +25,8 @@ async function onType(user, type, body) {
       break;
     case 'video':
         let urlVideo = getValueFromTag(body, 'payload.url')
-        console.log(user, 'send: ', type, {urlVideo})
+        let userData = save.video(user, {urlVideo})
+        console.log({userData})
       break;
     case 'image':
         let urlImage = getValueFromTag(body, 'payload.url')

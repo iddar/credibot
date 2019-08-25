@@ -79,9 +79,12 @@ module.exports = function(router) {
 
     let latlog = location.split('place/').pop()
 
-    ctx.body = {
+    const response = {
       ine, video, recipt, location, latlog
     }
+
+    console.log(response)
+    ctx.body = response
     // ctx.body = {
     //   "set_attributes": { "address_doc": await parseINE(img) }
     // }

@@ -8,6 +8,11 @@ const verification = 'super-cat-serial'
 
 function getValueFromTag(obj, filter) {
   let flat = flatten(obj)
+
+  console.log(
+    JSON.stringify(flat, null, 2)
+  )
+
   let keys = Object.keys(flat)
 
   let [key] = keys.filter(key => key.includes(filter))
@@ -17,9 +22,6 @@ function getValueFromTag(obj, filter) {
 
 async function onType(user, type, body) {
   console.log({type})
-  console.log(
-    JSON.stringify(body, null, 2)
-  )
   switch (type) {
     case 'location':
       let lat = getValueFromTag(body, 'coordinates.lat')

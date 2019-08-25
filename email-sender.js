@@ -65,7 +65,7 @@ function getEmailTemplate(ine, frame, mapPic, numRam) {
           <td colspan="3" style="font-weight: bold; font-size: 16px; padding: 30px 0; border-top: 1px dashed #333;">RESULTADO</td>
         </tr>
         <tr>
-          <td colspan="2" style="padding-bottom: 20px;"><img src="https://quickchart.io/chart?c={type:'horizontalBar',data:{labels:['VERIFICACIÓN DE IDENTIDAD','VERIFICACIÓN DE DOMICILIO','CONFIABILIDAD'], datasets:[{data:[90,5,45,0],label:'%25',backgroundColor:%27red%27}]}}" width="400" height="240" alt=""> </td>
+          <td colspan="2" style="padding-bottom: 20px;"><img src="https://quickchart.io/chart?c={type:'horizontalBar',data:{labels:['VERIFICACIÓN DE IDENTIDAD','VERIFICACIÓN DE DOMICILIO','CONFIABILIDAD'], datasets:[{data:[${numRam},5,45,0],label:'%25',backgroundColor:%27red%27}]}}" width="400" height="240" alt=""> </td>
           <td align="center" style="padding-bottom: 20px;">
             <img src="http://violeta.space/credibot/icon-nope.png" alt=""> <br>
             <a style="padding: 10px; border: 1px solid black; border-radius: 100px; color: black; text-decoration: none; display: inline-block; margin: 10px;" href="#">Revisar status</a>

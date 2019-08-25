@@ -31,7 +31,12 @@ router.post('/webhook', async (ctx, next) => {
 })
 
 router.post('/sample', async (ctx, next) => {
-  ctx.body = {"address_doc": "Calle cositas"}
+  ctx.body = {
+    "messages": [
+      {"text": "Welcome to the Chatfuel Rockets!"},
+      {"text": "What are you up to?"}
+    ]
+   }
   await next() // end request
   console.warn(JSON.stringify(ctx.request.body, null, 2))
 })

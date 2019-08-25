@@ -20,18 +20,15 @@ async function onType(user, type, body) {
     case 'location':
       let lat = getValueFromTag(body, 'coordinates.lat')
       let long = getValueFromTag(body, 'coordinates.long')
-      save.location(user, {location: {lat, long}})
-      console.log({userData})
+      console.log(save.location(user, {location: {lat, long}}))
       break;
     case 'video':
         let video = getValueFromTag(body, 'payload.url')
-        let userData = save.video(user, {video})
-        console.log({userData})
+        console.log(save.video(user, {video}))
       break;
     case 'image':
         let ine = getValueFromTag(body, 'payload.url')
-        let userData = save.video(user, {ine})
-        console.log({userData})
+        console.log(save.video(user, {ine}))
       break;
   
     default:

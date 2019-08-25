@@ -1,5 +1,4 @@
 const flatten = require('flat')
-
 const parseINE = require('./parseINE')
 const save = require("./saveMedia")
 const getFrame = require("./frameFromVideo")

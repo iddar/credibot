@@ -31,7 +31,7 @@ router.post('/webhook', async (ctx, next) => {
 })
 
 router.post('/sample', async (ctx, next) => {
-  ctx.body = 'ok'
+  ctx.body = {"address_doc": "Calle cositas"}
   await next() // end request
   console.warn(JSON.stringify(ctx.request.body, null, 2))
 })

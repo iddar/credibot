@@ -36,7 +36,7 @@ function getValueFromTag(obj, filter) {
 //         let ine = getValueFromTag(body, 'payload.url')
 //         console.log(save.video(user, {ine}))
 //       break;
-  
+
 //     default:
 //       break;
 //   }
@@ -46,7 +46,7 @@ module.exports = function(router) {
   router.get('/', (ctx, next) => {
     ctx.body = "run"
   })
-  
+
   router.get('/webhook', (ctx, next) => {
     if (ctx.query['hub.verify_token'] === verification) {
       ctx.body = ctx.query['hub.challenge']
@@ -54,7 +54,7 @@ module.exports = function(router) {
       ctx.body = 'Error, wrong validation token'
     }
   })
-  
+
   router.post('/webhook', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
@@ -62,14 +62,14 @@ module.exports = function(router) {
     // let user = getValueFromTag(ctx.request.body, 'sender.id')
     // onType(user, type, ctx.request.body)
   })
-  
+
   router.post('/resume', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
     let user = getValueFromTag(ctx.request.body, 'messenger user id')
     console.warn(save.getUserData(user))
   })
-  
+
   router.post('/sample', async (ctx, next) => {
     // console.warn(JSON.stringify(
     //   flatten(ctx.request.body)
@@ -91,13 +91,14 @@ module.exports = function(router) {
     // }
 
     next()
-    
+
     let frame = await getFrame(video)
     let mapPic = getMap(latlog)
-    
+    let numRam = Math.floor(Math.random() * 21) + 70
+
     console.log({
       ...response,
-      frame, mapPic
+      frame, mapPic, numRam
     })
 
     const crop = await makeCrop(ine)
@@ -108,7 +109,7 @@ module.exports = function(router) {
       to: 'usuario@gmail.com',         // List of recipients
       subject: 'Nueva solicitud de crédito', // Subject line,
 
-      frame, ine, mapPic
+      frame, ine, mapPic, numRam
     })
   })
 }

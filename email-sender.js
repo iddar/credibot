@@ -43,9 +43,9 @@ function getEmailTemplate(ine, frame, mapPic) {
           <td colspan="3" style="font-weight: bold; font-size: 16px; padding: 30px 0 20px 0;">ÍNDICE DE CONFIABILIDAD PARA IDENTIDAD I RECONOCIMIENTO FACIAL </td>
         </tr>
         <tr>
-          <td style="padding-bottom: 30px"><img src="${ine}" style="width: 200px height: auto;" alt=""> </td>
-          <td style="padding-bottom: 30px"><img src="https://quickchart.io/chart?c={type:%27radialGauge%27,data:{datasets:[{data:[83],backgroundColor:%27limegreen%27}]}}" width="250" height="150" alt=""></td>
-          <td style="padding-bottom: 30px"><img src="${frame}"  style="width: 200px height: auto;" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="${ine}" style="width: 200px; height: auto;" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="https://quickchart.io/chart?c={type:%27radialGauge%27,data:{datasets:[{data:[${numRam}],backgroundColor:%27limegreen%27}]}}" width="250" height="150" alt=""></td>
+          <td style="padding-bottom: 30px"><img src="${frame}"  style="width: 200px; height: auto;" alt=""> </td>
         </tr>
         <!-- / Facial -->
 
@@ -54,9 +54,9 @@ function getEmailTemplate(ine, frame, mapPic) {
           <td colspan="3" style="font-weight: bold; font-size: 16px; padding: 30px 0; border-top: 1px dashed #333;">ÍNDICE DE EXACTITUD DE LA UBICACIÓN DEL DOMICILIO </td>
         </tr>
         <tr>
-          <td style="padding-bottom: 30px"><img src="http://violeta.space/credibot/address-01.png"  style="width: 200px height: auto;" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="http://violeta.space/credibot/address-01.png" alt=""> </td>
           <td style="padding-bottom: 30px"><img src="https://quickchart.io/chart?c={type:%27radialGauge%27,data:{datasets:[{data:[5],backgroundColor:%27red%27}]}}" width="250" height="150" alt=""> </td>
-          <td style="padding-bottom: 30px"><img src="${mapPic}" alt=""> </td>
+          <td style="padding-bottom: 30px"><img src="${mapPic}"  style="width: 200px; height: auto;" alt=""> </td>
         </tr>
         <!-- / Domicilio -->
 
@@ -89,7 +89,7 @@ function getEmailTemplate(ine, frame, mapPic) {
 module.exports = function send (conf) {
   let msg = {
     ...conf,
-    html: getEmailTemplate(conf.ine, conf.frame, conf.mapPic)
+    html: getEmailTemplate(conf.ine, conf.frame, conf.mapPic, conf.numRam)
   }
 
   transport.sendMail(msg, function(err, info) {

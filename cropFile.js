@@ -1,7 +1,6 @@
-const {Storage} = require('@google-cloud/storage');
-const extractFrames = require('ffmpeg-extract-frames')
+const {Storage} = require('@google-cloud/storage')
 const shortid = require('shortid')
-const extractAudio = require('ffmpeg-extract-audio')
+const sharp = require('sharp')
 
 const downloadFile = require('./downloadFile')
 const path = './.tmp'
@@ -9,8 +8,6 @@ const path = './.tmp'
 const storage = new Storage({
   credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
 })
-
-const bucketName = 'credibot'
 
 async function saveToCloud (filePath) {
   await storage.bucket(bucketName)
@@ -36,25 +33,26 @@ async function saveToCloud (filePath) {
   return url
 }
 
-module.exports = async function getFrame(url) {
-  let videoPath = await downloadFile(url, path, 'mp4')
+function crop (file) {
   let uuid = shortid.generate()
-  let framePath = `${uuid}.jpg`
-  // let audioPath = `${uuid}.ogg`
-  
-  await extractFrames({
-    input: videoPath,
-    output: `${path}/${framePath}`,
-    offsets: [1000]
+  let name = `${uuid}.jpg`
+  return new Promise((resolve, reject) => {
+    sharp(file)
+    .resize(320, 240)
+    .toFile(`${path}/${name}`, (err, info) => {
+      if (err) reject(err)
+      resolve(name)
+      console.log({info})
+    })
   })
+}
 
-  // await extractAudio({
-  //   input: videoPath,
-  //   output: audioPath
-  // })
-  // await saveToCloud(audioPath)
-
-  let urlFile = await saveToCloud(framePath)
-
+async function makeCrop (url) {
+  let videoPath = await downloadFile(url, path, 'jpg')
+  let imgCrop = await crop(videoPath)
+  let urlFile = await saveToCloud(`${path}/${imgCrop}`) 
+  
   return urlFile
 }
+
+module.exports = makeCrop

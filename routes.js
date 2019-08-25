@@ -4,6 +4,8 @@ const parseINE = require('./parseINE')
 const save = require("./saveMedia")
 const getFrame = require("./frameFromVideo")
 const send = require('./email-sender')
+const makeCrop = require('./cropFile')
+
 
 const verification = 'super-cat-serial'
 
@@ -98,6 +100,9 @@ module.exports = function(router) {
       frame, mapPic
     })
 
+    const crop = await makeCrop(ine)
+    console.log({crop})
+
     send({
       from: 'hola@credibot.com', // Sender address
       to: 'usuario@gmail.com',         // List of recipients
@@ -108,9 +113,9 @@ module.exports = function(router) {
   })
 }
 
-
 function getMap(latlon){
   let g_key = process.env['GOOGLE_MAPS_KEY']
-  let uri = `https://maps.googleapis.com/maps/api/staticmap?center=${latlon}&zoom=12&size=400x400&key=${g_key}`
+  let zoom = 16
+  let uri = `https://maps.googleapis.com/maps/api/staticmap?center=${latlon}&zoom=${zoom}&size=400x400&key=${g_key}`
   return uri
 }

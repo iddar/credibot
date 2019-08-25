@@ -8,11 +8,11 @@
     "watch": "nodemon index.js"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Malito team",
+  "license": "MIT",
   "dependencies": {
     "koa": "^2.8.1",
     "koa-logger": "^3.2.1",

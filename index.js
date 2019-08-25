@@ -13,11 +13,7 @@ const PORT = process.env.PORT || 5000
 const verification = 'super-cat-serial'
 
 router.get('/webhook', (ctx, next) => {
-  if (ctx.query['hub.verify_token'] === verification) {
-    ctx.body = ctx.query['hub.challenge']
-  } else {
-    ctx.body = 'Error, wrong validation token'
-  }
+    ctx.body = 'run...'
 })
 
 router.post('/webhook', async (ctx, next) => {

@@ -34,13 +34,13 @@ module.exports = async function getFrame(url) {
     offsets: [1000]
   })
 
-  await extractAudio({
-    input: videoPath,
-    output: audioPath
-  })
+  // await extractAudio({
+  //   input: videoPath,
+  //   output: audioPath
+  // })
+  // await saveToCloud(audioPath)
 
-  await saveToCloud(framePath),
-  await saveToCloud(audioPath)
+  await saveToCloud(framePath)
 
   return framePath
 }

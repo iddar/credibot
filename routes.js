@@ -15,6 +15,27 @@ function getValueFromTag(obj, filter) {
   return flat[key]
 }
 
+async function onType(user, type, body) {
+  switch (type) {
+    case 'location':
+      let lat = getValueFromTag(body, 'coordinates.lat')
+      let long = getValueFromTag(body, 'coordinates.long')
+      console.log(user, 'send: ', type, {lat, long})
+      break;
+    case 'video':
+        let url = getValueFromTag(body, 'payload.url')
+        console.log(user, 'send: ', type, {url})
+      break;
+    case 'image':
+        let url = getValueFromTag(body, 'payload.url')
+        console.log(user, 'send: ', type, {url})
+      break;
+  
+    default:
+      break;
+  }
+}
+
 module.exports = function(router) {
   router.get('/', (ctx, next) => {
     ctx.body = "run"
@@ -31,8 +52,9 @@ module.exports = function(router) {
   router.post('/webhook', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
-    let value = getValueFromTag(ctx.request.body, 'type')
-    console.warn(value)
+    let type = getValueFromTag(ctx.request.body, 'type')
+    let user = getValueFromTag(ctx.request.body, 'sender.id')
+    onType(user, type, ctx.request.body)
   })
   
   router.post('/resume', async (ctx, next) => {

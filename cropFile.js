@@ -42,7 +42,7 @@ function crop (file) {
     .toFile(`${path}/${name}`, (err, info) => {
       if (err) reject(err)
       resolve(name)
-      console.log({info})
+      console.log({info});
     })
   })
 }

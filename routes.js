@@ -15,6 +15,8 @@ function getValueFromTag(obj, filter) {
 
   let keys = Object.keys(flat)
 
+  console.log(keys.filter(key => key.includes(filter)))
+
   let [key] = keys.filter(key => key.includes(filter))
 
   return flat[key]

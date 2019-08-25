@@ -13,20 +13,35 @@ const storage = new Storage({
 
 const bucketName = 'credibot'
 
-function saveToCloud (filePath) {
-  return storage.bucket(bucketName)
-  .upload(filePath, {
+async function saveToCloud (filePath) {
+  await storage.bucket(bucketName)
+  .upload(`${path}/${filePath}`, {
     gzip: true,
     metadata: {
       cacheControl: 'public, max-age=31536000',
     },
   })
+
+  const options = {
+    version: 'v2', // defaults to 'v2' if missing.
+    action: 'read',
+    expires: Date.now() + 1000 * 60 * 60, // one hour
+  };
+
+  // Get a v2 signed URL for the file
+  const [url] = await storage
+    .bucket(bucketName)
+    .file(filePath)
+    .getSignedUrl(options);
+
+  return url
 }
 
 module.exports = async function getFrame(url) {
   let videoPath = await downloadFile(url, path, 'mp4')
-  let framePath = `${path}/${shortid.generate()}.jpg`
-  let audioPath = `${path}/${shortid.generate()}.ogg`
+  let uuid = shortid.generate()
+  let framePath = `${uuid}.jpg`
+  // let audioPath = `${uuid}.ogg`
   
   await extractFrames({
     input: videoPath,
@@ -40,7 +55,7 @@ module.exports = async function getFrame(url) {
   // })
   // await saveToCloud(audioPath)
 
-  await saveToCloud(framePath)
+  let url = await saveToCloud(framePath)
 
-  return framePath
+  return url
 }

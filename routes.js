@@ -84,17 +84,23 @@ module.exports = function(router) {
       ine, video, recipt, location, latlog
     }
 
-    console.log(response)
+    ctx.body = response
+    // ctx.body = {
+    //   "set_attributes": { "address_doc": await parseINE(img) }
+    // }
+
+    next()
+    
+    let frame = await getFrame(video)
+    console.log({
+      ...response,
+      frame
+    })
 
     send({
       from: 'hola@credibot.com', // Sender address
       to: 'usuario@gmail.com',         // List of recipients
       subject: 'Nueva solicitud de crédito', // Subject line
     })
-
-    ctx.body = response
-    // ctx.body = {
-    //   "set_attributes": { "address_doc": await parseINE(img) }
-    // }
   })
 }

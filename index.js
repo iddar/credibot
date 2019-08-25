@@ -40,6 +40,12 @@ router.post('/webhook', async (ctx, next) => {
   console.warn(JSON.stringify(ctx.request.body, null, 2))
 })
 
+router.post('/resume', async (ctx, next) => {
+  ctx.body = 'ok'
+  await next() // end request
+  console.warn(JSON.stringify(ctx.request.body, null, 2))
+})
+
 router.post('/sample', async (ctx, next) => {
   console.warn(ctx.request.body)
   let img = ctx.request.body["INE Front"]

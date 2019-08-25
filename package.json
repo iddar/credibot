@@ -25,11 +25,11 @@
     "koa-router": "^7.4.0",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
+    "nodemailer": "^6.3.0",
     "shortid": "^2.2.14"
   },
   "devDependencies": {
     "dotenv": "^8.1.0",
-    "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1"
   },
   "repository": {

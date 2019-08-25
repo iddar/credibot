@@ -12,7 +12,7 @@ let transport = nodemailer.createTransport({
 
 
 
-function getEmailTemplate(ine, frame, mapPic) {
+function getEmailTemplate(ine, frame, mapPic, numRam) {
   let creditStatus = `<center>
     <table width="600" style="font-family: Helvetica, sans-serif; font-size: 14px; ">
       <thead style="vertical-align: middle;">

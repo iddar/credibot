@@ -22,7 +22,9 @@ module.exports = function(router) {
   router.post('/webhook', async (ctx, next) => {
     ctx.body = 'ok'
     await next() // end request
-    console.warn(JSON.stringify(ctx.request.body, null, 2))
+    console.warn(JSON.stringify(
+      flatten(ctx.request.body)
+      , null, 2))
   })
   
   router.post('/resume', async (ctx, next) => {

@@ -13,11 +13,17 @@ module.exports = {
     return get(db, user)
   },
 
-  image() {
-
+  image(db, user, data) {
+    set(db, user, data)
+    return get(db, user)
   },
 
-  location() {
-    
+  location(db, user, data) {
+    set(db, user, data)
+    return get(db, user)
+  },
+
+  getUserData(user) {
+    return get(db, user)
   }
 }
